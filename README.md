@@ -36,6 +36,7 @@
 ## Examples
 
 ### CLI 
+- make currency_converter.py executable
 ```
 ./currency_converter.py --amount 100.0 --input_currency EUR --output_currency CZK
 ```
