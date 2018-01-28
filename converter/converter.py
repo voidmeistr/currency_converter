@@ -102,5 +102,5 @@ def currency_code(currency):
         return currency.upper()
     # currency not found
     else:
-        err_msg = "Unknown currency symbol/code : {}.".format(currency)
+        err_msg = "Unknown currency symbol/code : {}".format(currency)
         raise ValueError(err_msg)
