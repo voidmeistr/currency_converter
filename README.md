@@ -48,7 +48,7 @@
 ```
 FLASK_APP=currency_converter_web.py flask run
 ```
-- then launch in browser and add input parameters:
+- then open given link in browser and add input parameters:
 ```
 /currency_converter?amount=0.9&input_currency=¥&output_currency=AUD
 ```
