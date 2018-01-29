@@ -14,33 +14,21 @@ parser.add_argument("--output_currency",
 
 args = parser.parse_args()
 
-input_dict = {}
-output_dict = {}
-
 try:
     # try to translate currency code/symbol
     input_currency = currency_code(args.input_currency)
-    input_dict['amount'] = args.amount
-    input_dict['currency'] = input_currency
+    input_dict = {
+        "amount": args.amount,
+        "currency": currency_code(input_currency)
+    }
 
-    # output currency is defined
-    if(args.output_currency != ""):
-        output_currency = currency_code(args.output_currency)
-        output_dict[output_currency] = exchange(
-            input_currency, output_currency, args.amount)
-    # convert to all known currencies
-    else:
-        output_dict = {currency: exchange(
-            input_currency, currency, args.amount) for currency in currency_symbols.values()}
-        # except input currency
-        output_dict.pop(input_currency)
+    # try to make output dictionary
+    output_dict = make_output(
+        args.amount, input_currency, args.output_currency)
 
-    # create result dictionary
-    result = {}
-    result["input"] = input_dict
-    result["output"] = output_dict
+    # print result
+    print(to_json(input_dict, output_dict))
 
-    print(json.dumps(result, sort_keys=True, indent=4, separators=(',', ': ')))
-
+# unknow currency code / connection to ECB couldn't be established
 except Exception as err:
     print(err)
