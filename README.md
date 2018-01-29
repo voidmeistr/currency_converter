@@ -12,6 +12,11 @@
 - Flask
 - Python3.4
 
+## Sources
+
+- [rates](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html)
+- [currency symbols](https://gist.github.com/Fluidbyte/2973986) 
+
 ## Parameters
 - `amount` - amount which we want to convert - float
 - `input_currency` - input currency - 3 letters name or currency symbol
