@@ -15,7 +15,8 @@
 ## Sources
 
 - [rates](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html)
-- [currency symbols](https://gist.github.com/Fluidbyte/2973986) 
+- [currency symbols](https://gist.github.com/Fluidbyte/2973986)
+- China symbol set to ¥ instead of CN¥ , and Japanese symbol from ¥ to JP¥, because of assignment example
 
 ## Parameters
 - `amount` - amount which we want to convert - float
