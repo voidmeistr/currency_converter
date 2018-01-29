@@ -15,19 +15,12 @@ def currency_converter():
         abort(404)
 
     try:
-        # input parameters
-        input_currency = currency_code(input_cur)
-        input_dict = {
-            "amount": amount,
-            "currency": input_currency
-        }
-
         # try to make output dictionary
-        output_dict = make_output(amount, input_currency, output_cur)
+        result = make_output(amount, input_cur, output_cur)
 
         # make response
         response = app.response_class(
-            response=to_json(input_dict, output_dict),
+            response=to_json(result),
             status=200,
             mimetype="application/json"
         )

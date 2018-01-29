@@ -107,49 +107,57 @@ def currency_code(currency):
         raise ValueError(err_msg)
 
 
-def make_output(amount, input_code, output_cur):
+def make_output(amount, input_cur, output_cur):
     """
     Function preparing results of app
     Args: amount - amount of money we want to convert
-          input_code - input currency code, so we can exclude it from results
+          input_cur - input currency code, so we can exclude it from results
           output_cur - empty string ("") for conversion to all known currencies or currency symbol/code
-    Returns: dictionary containing currency codes and converted values {"currency_code": value}
+    Returns: final output dictionary {"input": .... , "output": ...}
     """
 
     try:
+        # try to translate currency code/symbol
+        input_currency = currency_code(input_cur)
+        # create input_dict
+        input_dict = {
+            "amount": amount,
+            "currency": input_currency
+        }
+
         # convert to specific currency
         if(output_cur != ""):
             # try to translate currency code/symbol
             output_currency = currency_code(output_cur)
             output_dict = {
-                output_currency: exchange(input_code, output_currency, amount)
+                output_currency: exchange(input_currency, output_currency, amount)
             }
         # convert to all known currencies
         else:
             output_dict = {
-                currency: exchange(input_code, currency, amount)
+                currency: exchange(input_currency, currency, amount)
                 for currency in currency_symbols.values()
             }
-            output_dict.pop(input_code)
+            output_dict.pop(input_currency)
 
     # currency symbol/code is unknown
     except Exception as err:
         raise err
 
-    return output_dict
-
-
-def to_json(input_dict, output_dict):
-    """
-    Function returning final output of app by combining input and output dictionaries.
-    Args: input dictionary in form {"amount": value, "currency" : code}
-          output dictionary in form {"currency_code": converted value, ...}
-    Returns: JSON from dictionary in form : {"input": input_dict, "output": output_dict}
-    """
-
+    # final dict
     result = {
         "input": input_dict,
         "output": output_dict
     }
+
+    return result
+
+
+def to_json(result):
+    """
+    Function returning final output of app by combining input and output dictionaries.
+    Args: dictionary in form : {"input": input_dict, "output": output_dict}
+    Returns: JSON from dictionary 
+    """
 
     return json.dumps(result, sort_keys=True, indent=4, separators=(",", ": "))
