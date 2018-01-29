@@ -8,7 +8,7 @@ __name__ = 'converter'
 # currency symbols for supported currencies
 currency_symbols = {
     '$': 'USD',
-    '¥': 'JPY',
+    'jp¥': 'JPY',
     'kč': 'CZK',
     'dkr': 'DKK',
     '£': 'GBP',
@@ -21,7 +21,7 @@ currency_symbols = {
     'au$': 'AUD',
     'r$': 'BRL',
     'ca$': 'CAD',
-    'cn¥': 'CNY',
+    '¥': 'CNY',
     'hk$': 'HKD',
     'rp': 'IDR',
     '₪': 'ILS',
