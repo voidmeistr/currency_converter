@@ -61,8 +61,10 @@ def retrieve_exchange_rates():
     currencies = root[2][0]
 
     # creation of dictionary
-    exchange_rates = {child.attrib['currency']: float(
-        child.attrib['rate']) for child in currencies}
+    exchange_rates = {
+        child.attrib['currency']: float(child.attrib['rate'])
+        for child in currencies
+    }
 
     # add EUR
     exchange_rates['EUR'] = 1.0
